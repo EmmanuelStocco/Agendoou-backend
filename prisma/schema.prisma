@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  client
+  entrepreneur
+}
+
+enum AppointmentStatus {
+  pending
+  confirmed
+  canceled
+}
+
+model User {
+  id         Int                  @id @default(autoincrement())
+  name       String
+  email      String               @unique
+  password   String
+  role       Role
+  createdAt  DateTime             @default(now())
+
+  profile    EntrepreneurProfile?
+  appointmentsAsClient Appointment[] @relation("ClientAppointments")
+}
+
+model EntrepreneurProfile {
+  id              Int          @id @default(autoincrement())
+  userId          Int          @unique
+  businessName    String
+  themeColor      String?
+  logoUrl         String?
+  description     String?
+  slug            String       @unique
+  availableDays   Json
+  availableHours  Json
+  services        Json
+  createdAt       DateTime     @default(now())
+
+  user            User         @relation(fields: [userId], references: [id])
+  appointments    Appointment[] @relation("EntrepreneurAppointments")
+}
+
+model Appointment {
+  id               Int                  @id @default(autoincrement())
+  clientId         Int
+  entrepreneurId   Int
+  date             DateTime             @db.Date
+  time             DateTime             @db.Time
+  notes            String?
+  status           AppointmentStatus    @default(pending)
+  createdAt        DateTime             @default(now())
+
+  client           User                 @relation("ClientAppointments", fields: [clientId], references: [id])
+  entrepreneur     EntrepreneurProfile  @relation("EntrepreneurAppointments", fields: [entrepreneurId], references: [id])
+}
