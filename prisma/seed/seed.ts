@@ -50,7 +50,7 @@ async function main() {
       clientId: client.id,
       entrepreneurId: entrepreneur.profile!.id,
       date: new Date('2025-04-21'), 
-      time: new Date('1970-01-01T10:00:00Z'), 
+      time: '10:00:00', 
       notes: 'Quero corte + barba',
       status: 'confirmed',
     },
