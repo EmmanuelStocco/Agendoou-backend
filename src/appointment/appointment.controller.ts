@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
-import { UpdateAppointmentDto } from './dto/update-appointment.dto';
+import { UpdateAppointmentDto } from './dto/update-appointment.dto'; 
 
-@Controller('appointments')
+@Controller('appointments')  
 export class AppointmentController {
   constructor(private readonly appointmentService: AppointmentService) {}
 
