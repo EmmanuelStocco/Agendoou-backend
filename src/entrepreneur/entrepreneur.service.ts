@@ -51,6 +51,13 @@ export class EntrepreneurService {
         });
     }
 
+    findBySlug(slug: string) {
+        return this.prisma.entrepreneurProfile.findUnique({
+          where: { slug },
+        });
+      }
+      
+
     update(id: number, data: UpdateEntrepreneurDto) {
         return this.prisma.entrepreneurProfile.update({
             where: { id },
@@ -63,4 +70,20 @@ export class EntrepreneurService {
             where: { id },
         });
     }
+
+    async searchCompanies(query: string) {
+        return this.prisma.entrepreneurProfile.findMany({
+          where: {
+            slug: {
+              startsWith: query,
+              mode: 'insensitive',
+            }
+          },
+          take: 5,
+          select: { 
+            slug: true
+          },
+        });
+      } 
+    
 }
