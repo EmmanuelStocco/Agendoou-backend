@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -9,5 +9,12 @@ export class AuthController {
   @Post('login')
   login(@Body() dto: LoginDto) {
     return this.authService.login(dto.email, dto.password);
+  } 
+  
+  @Get('findOneByToken')
+  findOneByToken(@Req() req: Request) {   
+    const authHeader = req.headers['authorization']; 
+    const token = authHeader.split(' ')[1];
+    return this.authService.findOneByToken(token as string);
   }
 }

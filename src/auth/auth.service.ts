@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken'; 
 
 @Injectable()
 export class AuthService {
@@ -34,5 +35,27 @@ export class AuthService {
     return {
       access_token: token,
     };
-  }
+  } 
+
+  async findOneByToken(token: string) {
+    try { 
+      const decoded = jwt.verify(token, process.env.JWT_SECRET as string);       
+      const userId = decoded.sub;
+
+      if (!userId) throw new UnauthorizedException('Token inválido');
+
+      return await this.prisma.user.findUnique({ where: { id: Number(userId) }, 
+        include: {     
+          appointmentsAsClient: true
+        }
+    }) ;
+
+    // const password = user?.password; // Obtenha a senha do usuário
+    //   return {
+    //     ...user
+    //   }
+    } catch (err) {
+      throw new UnauthorizedException('Token inválido ou expirado');
+    }
+  } 
 }
