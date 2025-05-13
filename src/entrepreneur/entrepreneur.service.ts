@@ -84,6 +84,16 @@ export class EntrepreneurService {
             slug: true
           },
         });
-      } 
-    
+      }  
+
+    async getAppointmentHours(entrepreneurId: string, date: string) {  
+         const hoursAvailable = await this.prisma.entrepreneurProfile.findUnique({
+            where: { slug: entrepreneurId },
+            select: { availableHours: true },
+        });
+
+        return { 
+            ...hoursAvailable,
+        };
+    }
 }

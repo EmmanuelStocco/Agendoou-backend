@@ -44,9 +44,17 @@ export class EntrepreneurController {
   search(@Query('q') query: string) {
     console.log('search query:', query); // Log da busca
     return this.entrepreneurService.searchCompanies(query);
+  } 
+
+  @Get('hours')  
+  async getAppointmentHours(
+    @Query('entrepreneurId') entrepreneurId: string,
+    @Query('date') date: string, 
+  ) { 
+    console.log('entrepreneurId:', entrepreneurId); 
+    return this.entrepreneurService.getAppointmentHours(entrepreneurId, date);
   }
 
-  
   @Get('slug/:slug')
   findBySlug(@Param('slug') slug: string) {
     return this.entrepreneurService.findBySlug(slug);
@@ -55,5 +63,5 @@ export class EntrepreneurController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.entrepreneurService.findOne(id);
-  }
+  } 
 }
