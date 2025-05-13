@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Headers, UnauthorizedException, Req, Query } from '@nestjs/common';
 import { AppointmentService } from './appointment.service';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UpdateAppointmentDto } from './dto/update-appointment.dto'; 
@@ -7,14 +7,27 @@ import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 export class AppointmentController {
   constructor(private readonly appointmentService: AppointmentService) {}
 
-  @Post()
-  create(@Body() createAppointmentDto: CreateAppointmentDto) {
-    return this.appointmentService.create(createAppointmentDto);
+ @Post()
+  create(
+    @Body() createAppointmentDto: CreateAppointmentDto,
+    @Req() req: Request
+  ) {
+    const authHeader = req.headers['authorization']; 
+    const token = authHeader.split(' ')[1];
+    return this.appointmentService.create(createAppointmentDto, String(token));
   }
 
   @Get()
   findAll() {
     return this.appointmentService.findAll();
+  }
+
+    @Get('hours')  
+  async getAppointmentHours(
+    @Query('entrepreneurId') entrepreneurId: string,
+    @Query('date') date: string, 
+  ) {
+    return this.appointmentService.getAppointmentHours(entrepreneurId, date);
   }
 
   @Get(':id')
