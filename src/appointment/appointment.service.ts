@@ -11,7 +11,6 @@ export class AppointmentService {
 
   async create(data: CreateAppointmentDto, token: string) {
     const { date, time, notes, entrepreneurId: slug } = data;
-
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     const clientId = Number(decoded.sub);
 
@@ -27,7 +26,12 @@ export class AppointmentService {
       throw new NotFoundException('Empreendedor não encontrado');
     }
 
-    const appointmentDate = new Date(date);
+    // const appointmentDate = new Date(date);
+    const [year, month, day] = date.split('-').map(Number);
+  const appointmentDate = new Date(year, month - 1, day); 
+  console.log('appointmentDate', appointmentDate)
+  // Local timezone
+
 
     const existing = await this.prisma.appointment.findFirst({
       where: {
