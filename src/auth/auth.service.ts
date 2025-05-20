@@ -2,14 +2,14 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import * as jwt from 'jsonwebtoken'; 
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService
-  ) {}
+  ) { }
 
   async validateUser(email: string, password: string) {
     const user = await this.prisma.user.findUnique({ where: { email } });
@@ -35,27 +35,57 @@ export class AuthService {
     return {
       access_token: token,
     };
-  } 
+  }
 
   async findOneByToken(token: string) {
-    try { 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET as string);       
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
       const userId = decoded.sub;
 
       if (!userId) throw new UnauthorizedException('Token inválido');
 
-      return await this.prisma.user.findUnique({ where: { id: Number(userId) }, 
-        include: {     
-          appointmentsAsClient: true
-        }
-    }) ;
+      const user = await this.prisma.user.findUnique({ where: { id: Number(userId) } });
 
-    // const password = user?.password; // Obtenha a senha do usuário
-    //   return {
-    //     ...user
-    //   }
+      if (!!user && user.role === "entrepreneur") { }
+
+      // Buscar agendamentos como empreendedor, se for
+      let appointmentsAsEntrepreneur = [] as any;
+      let entrepreneur = {} as any;
+      if (!!user && user.role === 'entrepreneur') {
+        entrepreneur = await this.prisma.entrepreneurProfile.findUnique({
+          where: { userId: user.id },
+          select: { id: true, slug: true },
+        });
+
+        if (!entrepreneur) throw new UnauthorizedException('Perfil de empreendedor não encontrado');
+
+        appointmentsAsEntrepreneur = await this.prisma.appointment.findMany({
+          where: { entrepreneurId: entrepreneur.id },
+          include: {
+            client: true,
+            entrepreneur: true,
+          },
+        });
+      }
+      const appointmentsAsClient = await this.prisma.user.findUnique({
+        where: { id: Number(userId) },
+        include: {
+          appointmentsAsClient: {
+            include: {
+              entrepreneur: { 
+                select: {
+                  businessName: true,
+                }
+              },
+            },
+          }
+        }
+      });
+
+
+      return { ...appointmentsAsClient, appointmentsAsEntrepreneur, ...entrepreneur }
     } catch (err) {
       throw new UnauthorizedException('Token inválido ou expirado');
     }
-  } 
+  }
 }
