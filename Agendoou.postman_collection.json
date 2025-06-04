@@ -1,0 +1,714 @@
+{
+	"info": {
+		"_postman_id": "50f79bcd-4e40-4c9c-9c7c-a200fdfcac13",
+		"name": "Agendoou",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16394368"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"emmanuelstocco@mail.com\",\r\n  \"password\": \"senha123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOneByToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NjM3NjYxLCJleHAiOjE3NDY2NTU2NjF9.qpdtz5YzoG9VQV3nXNmB6kS15flLTvTfneIrp7ItS6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/auth/findOneByToken",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"auth",
+								"findOneByToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"João da Silva\",\r\n  \"email\": \"joao@example.com\",\r\n  \"password\": \"senha123\",\r\n  \"role\": \"client\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NjM3NjYxLCJleHAiOjE3NDY2NTU2NjF9.qpdtz5YzoG9VQV3nXNmB6kS15flLTvTfneIrp7ItS6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users/1",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NTUxODE3LCJleHAiOjE3NDY1Njk4MTd9.PfbQBDmkSYoc6r3jmp6ANas1EZoU0fLkfHa9UuUaT_U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users/1",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"João da Silva ATT\",\r\n  \"email\": \"joao@example.com\",\r\n  \"password\": \"senha123\",\r\n  \"role\": \"client\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users/3",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/users/3",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enterpreneur",
+			"item": [
+				{
+					"name": "list entrepreneurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXMiOnsiZW5jcnlwdCI6IlUyRnNkR1ZrWDE5RHVIK2tLT1VldUtacU1BdlVoQXJtU3MxcUlhbEhyZnpKVjJDcVp4TDkxNTBxVlRXS3E0U0VsZEthaElkZ0gzUmFtY0poRUhhUWJrRENlR1JtTmd4M2Q5eTJyZVN4RmVmRCtjMjJ2dWRnYW44K2RCdjhMQmFMSFl5RDR3LysvMUhLUVd1bkcvd0hTQT09IiwiY3J5cHRvIjp0cnVlfSwiaWF0IjoxNzQ1OTM0MDc5LCJleHAiOjE3NDU5NzcyNzl9.luyQRyIi_yVRgpz36NHu8EwRBplDLihdsp1TCt1KzI4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find entrepreneurs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NjM3NjYxLCJleHAiOjE3NDY2NTU2NjF9.qpdtz5YzoG9VQV3nXNmB6kS15flLTvTfneIrp7ItS6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs/1",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "entrepreneurs search",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NjM3NjYxLCJleHAiOjE3NDY2NTU2NjF9.qpdtz5YzoG9VQV3nXNmB6kS15flLTvTfneIrp7ItS6g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs/search?q=j",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "j"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find slug entrepreneurs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs/slug/joao-cortes",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs",
+								"slug",
+								"joao-cortes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create entrepreneurs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 1,\r\n  \"businessName\": \"Loja Top do João\",\r\n  \"themeColor\": \"#FF5733\",\r\n  \"logoUrl\": \"https://meusite.com/logo.png\",\r\n  \"description\": \"Cortes e agendamentos top!\",\r\n  \"availableDays\": [\"Segunda\", \"Terça\", \"Quarta\"],\r\n  \"availableHours\": [\"09:00\", \"10:00\", \"11:00\", \"14:00\"],\r\n  \"services\": [\r\n    {\r\n      \"name\": \"Corte masculino\",\r\n      \"duration\": 30,\r\n      \"price\": 50\r\n    },\r\n    {\r\n      \"name\": \"Barba\",\r\n      \"duration\": 20,\r\n      \"price\": 30\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update entrepreneurs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"userId\": 1,\r\n  \"businessName\": \"Loja Top do João Att\",\r\n  \"themeColor\": \"#FF5733\",\r\n  \"logoUrl\": \"https://meusite.com/logo.png\",\r\n  \"description\": \"Cortes e agendamentos top!\",\r\n  \"availableDays\": [\"Segunda\", \"Terça\", \"Quarta\"],\r\n  \"availableHours\": [\"09:00\", \"10:00\", \"11:00\", \"14:00\"],\r\n  \"services\": [\r\n    {\r\n      \"name\": \"Corte masculino\",\r\n      \"duration\": 30,\r\n      \"price\": 50\r\n    },\r\n    {\r\n      \"name\": \"Barba\",\r\n      \"duration\": 20,\r\n      \"price\": 30\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs/2",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete appointments",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments/3",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appoinment",
+			"item": [
+				{
+					"name": "list appointments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NzE2Mzc3LCJleHAiOjE3NDY3MzQzNzd9.xzJYdI6qMP-VW6j2uTZlEea0mISNF5gV8v1fm-pXDkI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find appointments",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments/1",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find available hours",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ3MDcxNzgwLCJleHAiOjE3NDcwODk3ODB9.i_pkPyTEDvjQC45jc9HVBeFI9bgMuXUFAPaZsU4E-hE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments/hours?entrepreneurId=1&date=2025-04-21",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments",
+								"hours"
+							],
+							"query": [
+								{
+									"key": "entrepreneurId",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "2025-04-21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find entrepreneur hours",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ3MDcxNzgwLCJleHAiOjE3NDcwODk3ODB9.i_pkPyTEDvjQC45jc9HVBeFI9bgMuXUFAPaZsU4E-hE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/entrepreneurs/hours?entrepreneurId=1&date=2025-04-21",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"entrepreneurs",
+								"hours"
+							],
+							"query": [
+								{
+									"key": "entrepreneurId",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "2025-04-21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create appointments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ3MDcxNzgwLCJleHAiOjE3NDcwODk3ODB9.i_pkPyTEDvjQC45jc9HVBeFI9bgMuXUFAPaZsU4E-hE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"entrepreneurId\": \"joao-cortes\",\r\n   \"date\": \"2025-04-21\", \r\n   \"time\": \"13:00:00\", \r\n   \"notes\": \"Quero cortar o cabelo.\",\r\n   \"status\": \"confirmed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update appointments",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"clientId\": 1,\r\n  \"entrepreneurId\": 1,\r\n   \"date\": \"2025-04-21\", \r\n   \"time\": \"16:00:00\", \r\n   \"notes\": \"Quero cortar o cabelo.\",\r\n   \"status\": \"confirmed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments/3",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Appointments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZW1tYW51ZWxzdG9jY29AbWFpbC5jb20iLCJyb2xlIjoiY2xpZW50IiwiaWF0IjoxNzQ2NzE2Mzc3LCJleHAiOjE3NDY3MzQzNzd9.xzJYdI6qMP-VW6j2uTZlEea0mISNF5gV8v1fm-pXDkI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://agendoou-backend-1.onrender.com/appointments/5",
+							"protocol": "https",
+							"host": [
+								"agendoou-backend-1",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"appointments",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
